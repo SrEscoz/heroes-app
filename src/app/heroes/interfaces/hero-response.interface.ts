@@ -13,6 +13,7 @@ export interface Hero {
 	alterEgo: string;
 	firstApparence: string;
 	characters: string;
+	altImage: string;
 }
 
 export enum Publisher {
