@@ -24,7 +24,7 @@
     <div class="mt-auto">
         <mat-divider></mat-divider>
         <mat-card-actions>
-            <button mat-stroked-button color="primary"
+            <button mat-button color="accent"
                     [routerLink]="['/heroes/edit/',hero.id]">
                 <mat-icon>edit</mat-icon>
                 Editar
@@ -32,9 +32,10 @@
 
             <span class="spacer"></span>
 
-            <button mat-icon-button color="warn"
+            <button mat-flat-button color="primary"
                     [routerLink]="['/heroes/',hero.id]">
                 <mat-icon>read_more</mat-icon>
+                Ver más
             </button>
 
         </mat-card-actions>
