@@ -1,9 +1,17 @@
-<h1>Lista de Héroes</h1>
+<h1>🦸‍ Lista de Héroes</h1>
 <mat-divider></mat-divider>
 
-<div class="grid mt-4">
+<div class="grid mt-4" *ngIf="heroes.length > 0; else loading">
     <div *ngFor="let hero of heroes"
          class="col-12 sm:col-4 md:col-4 xl:col-3">
         <heroes-hero-card [hero]="hero"></heroes-hero-card>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="flex  justify-content-center mt-5">
+        <div class="justify-content-center">
+            <mat-spinner color="accent"></mat-spinner>
+        </div>
+    </div>
+</ng-template>

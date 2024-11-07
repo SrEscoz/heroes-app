@@ -12,3 +12,8 @@ body {
 .spacer {
     flex: 1 1 auto;
 }
+
+.full-height-image {
+    height: calc(100vh - 200px);
+    object-fit: fill;
+}

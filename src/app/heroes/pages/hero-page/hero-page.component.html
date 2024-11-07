@@ -1,1 +1,58 @@
-<h2>{{ hero?.superhero }}</h2>
+<div class="grid h-full" *ngIf="hero; else loading">
+    <div class="col-4">
+        <mat-card class="h-full">
+            <mat-card-header>
+                <mat-card-title>{{ hero.alterEgo }}</mat-card-title>
+                <mat-card-subtitle>{{ hero.superhero }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <img mat-card-image [src]="hero | heroImage" [alt]="hero.superhero" class="full-height-image">
+
+        </mat-card>
+    </div>
+
+    <div class="col-8">
+        <mat-card class="h-full">
+            <mat-card-header>
+                <mat-card-title>Información</mat-card-title>
+                <mat-card-subtitle>{{ hero.superhero }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item>{{ hero.firstApparence }}</mat-list-item>
+                    <mat-list-item>
+                        <mat-chip-listbox class="mt-1 mb-2">
+                            <mat-chip *ngFor="let name of hero.characters.split(',')">
+                                {{ name }}
+                            </mat-chip>
+                        </mat-chip-listbox>
+                    </mat-list-item>
+                    <mat-list-item>{{ hero.publisher }}</mat-list-item>
+                    <mat-list-item>{{ hero.alterEgo }}</mat-list-item>
+                </mat-list>
+            </mat-card-content>
+
+            <div class="mt-auto">
+                <mat-divider></mat-divider>
+                <mat-card-actions>
+                    <button mat-stroked-button
+                            color="accent"
+                            (click)="goBack()">
+                        <mat-icon>arrow_back</mat-icon>
+                        Atrás
+                    </button>
+                </mat-card-actions>
+            </div>
+
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="flex  justify-content-center mt-5">
+        <div class="justify-content-center">
+            <mat-spinner color="accent"></mat-spinner>
+        </div>
+    </div>
+</ng-template>
