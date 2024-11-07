@@ -17,3 +17,8 @@ body {
     height: calc(100vh - 200px);
     object-fit: fill;
 }
+
+.card-img {
+    height: 100px;
+    object-fit: cover;
+}
