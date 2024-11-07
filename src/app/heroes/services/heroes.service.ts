@@ -27,4 +27,11 @@ export class HeroesService {
 				catchError(() => of(undefined))
 			);
 	}
+
+	public getSuggestions(search: string): Observable<Hero[]> {
+		return this.httpClient.get<HeroResponse>(`${this.baseUrl}/heroes?hero_name=${search}&page_size=6`)
+			.pipe(
+				map(response => response.content)
+			);
+	}
 }
