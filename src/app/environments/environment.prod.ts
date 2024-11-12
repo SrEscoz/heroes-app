@@ -1,3 +1,3 @@
 export const environment = {
-	baseUrl: 'por definir',
+	baseUrl: 'https://multi.escoz.net',
 };
