@@ -1,3 +1,3 @@
 export const environment = {
-	baseUrl: 'https://multi.escoz.net',
+	baseUrl: 'http://localhost:8080/multi-bff/v1',
 };
