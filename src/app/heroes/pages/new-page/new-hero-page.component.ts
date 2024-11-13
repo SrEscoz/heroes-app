@@ -4,6 +4,7 @@ import {Hero, Publisher} from '../../interfaces/hero-response.interface';
 import {HeroesService} from '../../services/heroes.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-new-page',
@@ -28,7 +29,8 @@ export class NewHeroPageComponent implements OnInit {
 
 	constructor(private heroService: HeroesService,
 	            private activateRoute: ActivatedRoute,
-	            private router: Router) {
+	            private router: Router,
+	            private snackBar: MatSnackBar,) {
 	}
 
 	ngOnInit(): void {
@@ -43,8 +45,6 @@ export class NewHeroPageComponent implements OnInit {
 
 				this.heroFrom.reset(hero);
 				this.editMode = true;
-
-				return;
 			});
 		}
 	}
@@ -58,18 +58,31 @@ export class NewHeroPageComponent implements OnInit {
 		if (!this.currentHero.id) {
 			this.heroService.postHero(this.currentHero)
 				.subscribe(hero => {
-					// this.router.navigate([`/heroes/${hero!.id}`]).then();
-					return;
+					this.router.navigate(['/heroes/edit', hero?.id]).then();
+					this.showSnackBar(`El héroe ${hero?.superhero} fue agregado exitosamente`);
 				});
+
+			return;
 		}
 
 		// Si tiene un ID es una actualización
 		this.heroService.updateHero(this.currentHero)
 			.subscribe(hero => {
-				// this.router.navigate([`/heroes/${hero!.id}`]).then();
-				return;
+				if (!hero) {
+					this.showSnackBar('Error al actualizar el héroe');
+				}
+
+				this.showSnackBar(`El héroe ${hero?.superhero} fue editado exitosamente`);
 			});
 
+		return;
+	}
+
+	showSnackBar(message: string): void {
+		this.snackBar.open(message, 'Ok', {
+
+			duration: 2500,
+		});
 	}
 
 	get currentHero(): Hero {
