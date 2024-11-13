@@ -27,6 +27,8 @@ export class NewHeroPageComponent implements OnInit {
 
 	public publishers: string[] = ['DC Comics', 'Marvel Comics'];
 
+	private hero?: Hero;
+
 	constructor(private heroService: HeroesService,
 	            private activateRoute: ActivatedRoute,
 	            private router: Router,
@@ -44,6 +46,7 @@ export class NewHeroPageComponent implements OnInit {
 					this.router.navigate(['/404']).then();
 
 				this.heroFrom.reset(hero);
+				this.hero = hero;
 				this.editMode = true;
 			});
 		}
@@ -83,6 +86,11 @@ export class NewHeroPageComponent implements OnInit {
 
 			duration: 2500,
 		});
+	}
+
+	clearForm(): void {
+		if (this.hero) this.heroFrom.reset(this.hero);
+		else this.heroFrom.reset();
 	}
 
 	get currentHero(): Hero {
