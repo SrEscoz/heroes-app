@@ -54,7 +54,7 @@
                     </button>
 
                     <div class="flex gap-3">
-                        <button mat-fab color="warn">
+                        <button mat-fab color="warn" *ngIf="editMode" (click)="onDelete()">
                             <mat-icon>delete</mat-icon>
                         </button>
 

@@ -5,13 +5,15 @@ import {HeroesService} from '../../services/heroes.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmDialogComponent} from '../../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
 	selector: 'app-new-page',
-	templateUrl: './new-hero-page.component.html',
+	templateUrl: './edit-hero-page.component.html',
 	styles: ``
 })
-export class NewHeroPageComponent implements OnInit {
+export class EditHeroPageComponent implements OnInit {
 
 	public editMode: boolean = false;
 
@@ -32,7 +34,8 @@ export class NewHeroPageComponent implements OnInit {
 	constructor(private heroService: HeroesService,
 	            private activateRoute: ActivatedRoute,
 	            private router: Router,
-	            private snackBar: MatSnackBar,) {
+	            private snackBar: MatSnackBar,
+	            private dialog: MatDialog) {
 	}
 
 	ngOnInit(): void {
@@ -80,6 +83,25 @@ export class NewHeroPageComponent implements OnInit {
 
 		return;
 	}
+
+	onDelete() {
+		const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+			data: this.heroFrom.value
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+				this.heroService.deleteHero(this.currentHero.id)
+					.subscribe(value => {
+						if (value) {
+							this.router.navigate(['/heroes']).then();
+							this.showSnackBar('Heroe elimiado exitosamente');
+						}
+					});
+			}
+		});
+	}
+
 
 	showSnackBar(message: string): void {
 		this.snackBar.open(message, 'Ok', {

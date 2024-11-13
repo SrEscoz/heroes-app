@@ -42,6 +42,14 @@ export class HeroesService {
 			);
 	}
 
+	public deleteHero(id: string): Observable<boolean> {
+		return this.httpClient.delete<boolean>(`${this.baseUrl}/heroes/${id}`)
+			.pipe(
+				catchError(() => of(false)),
+				map(() => true)
+			);
+	}
+
 	public getSuggestions(search: string): Observable<Hero[]> {
 		return this.httpClient.get<HeroResponse>(`${this.baseUrl}/heroes?hero_name=${search}&page_size=6`)
 			.pipe(
