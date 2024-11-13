@@ -35,6 +35,13 @@ export class HeroesService {
 			);
 	}
 
+	public updateHero(hero: Hero): Observable<Hero | undefined> {
+		return this.httpClient.put<Hero>(`${this.baseUrl}/heroes/${hero.id}`, hero)
+			.pipe(
+				catchError(() => of(undefined))
+			);
+	}
+
 	public getSuggestions(search: string): Observable<Hero[]> {
 		return this.httpClient.get<HeroResponse>(`${this.baseUrl}/heroes?hero_name=${search}&page_size=6`)
 			.pipe(

@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NotFoundPageComponent} from './pages/not-found-page/not-found-page.component';
+import {MaterialModule} from '../material/material.module';
 
 
 @NgModule({
@@ -8,7 +9,8 @@ import {NotFoundPageComponent} from './pages/not-found-page/not-found-page.compo
 		NotFoundPageComponent
 	],
 	imports: [
-		CommonModule
+		CommonModule,
+		MaterialModule
 	],
 	exports: [
 		NotFoundPageComponent

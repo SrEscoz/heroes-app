@@ -1,9 +1,13 @@
-<h1>Agregar / Editar Héroe</h1>
+<h1>
+    <span *ngIf="editMode">Editar </span>
+    <span *ngIf="!editMode">Nuevo </span>
+    Héroe
+</h1>
 <mat-divider class="mb-2"></mat-divider>
 
-<div class="grid">
+<div class="grid h-full">
     <div class="sm:col-12 md:col-6">
-        <mat-card>
+        <mat-card class="h-full">
             <mat-card-content>
 
                 <form class="grid" [formGroup]="heroFrom" (ngSubmit)="onSubmit()">
@@ -53,9 +57,12 @@
 
             </mat-card-content>
         </mat-card>
-
     </div>
-    <div class="col-12 sm:col-6">
 
+    <div class="sm:col-12 md:col-6">
+        <mat-card class="h-full">
+            <img mat-card-image [src]="currentHero | heroImage" [alt]="currentHero.superhero" class="full-height-image">
+        </mat-card>
     </div>
+
 </div>
