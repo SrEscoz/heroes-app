@@ -11,8 +11,7 @@ export class HeroesService {
 
 	private baseUrl = environment.baseUrl;
 
-	constructor(private httpClient: HttpClient) {
-	}
+	constructor(private httpClient: HttpClient) {}
 
 	public getHeroes(): Observable<Hero[]> {
 		return this.httpClient.get<HeroResponse>(`${this.baseUrl}/heroes`)
