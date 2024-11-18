@@ -22,3 +22,7 @@ body {
     height: 100px;
     object-fit: cover;
 }
+
+.text-accent {
+    color: #69f0ae;
+}
